@@ -1,0 +1,68 @@
+<html>
+    <div class="p-3 mb-2 bg-primary bg-gradient text-white">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+            <title>CreativeName</title>
+            <!-- {% load static %}
+            <link rel="stylesheet" href="static/creativename.css"> -->
+        </head>
+
+        <body>
+            <div class="container">
+                <div class="row">
+                    <div class="mt-4 p-5 bg-dark bg-gradient text-white rounded">
+                        <div class="text-center">
+                            <div class="row justify-content-center">
+                                <div class="col-auto">
+                                    <h1><big>{{ thread.subject }}</big></h1>
+                                    <small>Created by {{ thread.alias }} on {{ thread.created_at }}</small>
+                                    <!-- <br><a href="/"> Back to Home </a><br> -->
+                                    <br><br>
+                                    <a class="btn btn-dark" href="/" role="button">Back to Home</a>
+                                    <br><br>   
+                                    <table id="id_messages_table" class="table table-dark table-bordered table-striped table-hover align-middle">
+                                        <thead class="table-info text-center">
+                                            <tr>
+                                                <th class="text-center">Author</th>
+                                                <th class="text-center">Message</th>
+                                            </tr>
+                                        </thread>
+                                        <tbody class="table table-bordered table-dark table-striped">
+                                            {% for message in thread.message_set.all %}
+                                                <tr>
+                                                    <td><em><b><big>{{ message.alias }}</big></b></em>
+                                                        <small>{{ message.created_at }}</small></td>
+                                                    <td>{{ message.text }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table> 
+                                    <br>
+                                    <h1><small>Reply</small></h1>
+                                    <form method = "POST" action="/my_app/{{ thread.id }}/add_message">
+                                        <div class="mb-3 mt-3 p-3 mb-2 bg-dark text-white rounded">   
+                                            <label for="alias_text">User:</label>
+                                            <textarea class="form-control" name = "alias_text" id="id_user" placeholder="Who's speaking?" rows="1" cols="20"></textarea><br>
+                                            <br>
+                                            <label for="message_text">Message:</label>
+                                            <textarea class="form-control" name = "message_text" id="id_new_message" placeholder="What are you thinking?" rows="10" cols="50"></textarea>
+                                            {% csrf_token %}
+                                            <br>
+                                            <input  type="submit" id="submit_button" value="Submit" class="btn btn-dark">
+                                        </div>
+                                    </form>      
+                                    <br>
+                                </div> 
+                            </div>  
+                        </div>
+                    </div>
+                </div>  
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        </body>
+    </div>
+</html>
